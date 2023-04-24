@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const InputStyled = styled.input`
   box-sizing: border-box;
   padding: 12px;
-  height: 32px;
+  height: ${(props) => props.height};
   background: #ffffff;
   border: 1px solid #777777;
   border-radius: 8px;

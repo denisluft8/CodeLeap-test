@@ -12,8 +12,9 @@ export const ButtonStyled = styled.button`
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-
+  cursor: pointer;
+  
   &:hover {
-    background: #5e83e9;
+    filter: opacity(80%);
   }
 `;

@@ -36,3 +36,6 @@ export const FormContainer = styled.form`
     margin-bottom: 12px;
   }
 `;
+
+export const PostsContainer = styled.div`
+`;

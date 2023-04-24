@@ -25,4 +25,20 @@ export const GlobalStyle = createGlobalStyle`
     body {
         min-height: 100%;
     }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #eeeeee;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #7695EC;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #587ee8;
+    }
 `;
