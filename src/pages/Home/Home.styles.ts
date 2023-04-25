@@ -38,4 +38,5 @@ export const FormContainer = styled.form`
 `;
 
 export const PostsContainer = styled.div`
+  width: 100%;
 `;

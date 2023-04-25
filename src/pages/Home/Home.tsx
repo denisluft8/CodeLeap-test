@@ -1,10 +1,20 @@
-import { ButtonS, InputS, Posts } from "../../components";
+import { ButtonS, EditModal, InputS, Posts } from "../../components";
 import { useState, useEffect } from "react";
 import api from "../../services/api";
 import { FormContainer, HomePage, PostsContainer } from "./Home.styles";
 
 export const Home = () => {
   const [userData, setUserData] = useState([]);
+  const [userName, setUserName] = useState("denis");
+  const [form, setForm] = useState<{
+    username: string;
+    title: string;
+    content: string;
+  }>({
+    username: userName,
+    title: "",
+    content: "",
+  });
 
   useEffect(() => {
     loadInformation();
@@ -17,6 +27,16 @@ export const Home = () => {
     });
   };
 
+  const sendInformation = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    api
+      .post("careers/", form)
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <HomePage>
       <FormContainer action="submit">
@@ -24,18 +44,20 @@ export const Home = () => {
         <InputS
           inputId={"title"}
           text={"Title"}
-          inputType={"text"}
           pHolder={"Hello World"}
+          onChange={(val: string) => setForm({ ...form, title: val })}
         />
         <InputS
           inputId={"content"}
           text={"Content"}
-          inputType={"text"}
           inputLarge
           pHolder={"Content Here"}
+          onChange={(val: string) => setForm({ ...form, content: val })}
         />
-        <ButtonS text="Create" />
+        <ButtonS text="Create" onClick={(e: any) => sendInformation(e)} />
       </FormContainer>
+
+      <EditModal />
 
       <PostsContainer>
         {userData &&

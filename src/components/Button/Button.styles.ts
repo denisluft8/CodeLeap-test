@@ -1,19 +1,25 @@
 import styled from "styled-components";
 
-export const ButtonStyled = styled.button`
+interface ButtonStyleProps {
+  bgColor?: string;
+  border?: boolean;
+  textColor?: string;
+}
+
+export const ButtonStyled = styled.button<ButtonStyleProps>`
   width: 120px;
   height: 32px;
   left: 1192px;
   top: 382px;
-  color: #fff;
-  border: none;
-  background: #7695ec;
+  color: ${(props) => props.textColor};
+  border: ${(props) => (props.border ? "1px solid #999" : "none")};
+  background: ${(props) => props.bgColor};
   border-radius: 8px;
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
   cursor: pointer;
-  
+
   &:hover {
     filter: opacity(80%);
   }
