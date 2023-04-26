@@ -63,7 +63,6 @@ export const Home = () => {
         <ButtonS text="Create" onClick={(e: any) => sendInformation(e)} />
       </FormContainer>
 
-
       <PostsContainer>
         {userData &&
           userData.map((data: any) => (
