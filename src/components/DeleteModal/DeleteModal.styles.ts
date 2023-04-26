@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const EditContainer = styled.div`
+export const DeleteContainer = styled.div`
   border: 1px solid #999999;
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@ export const EditContainer = styled.div`
   padding: 20px;
   box-sizing: border-box;
   width: 80%;
-  min-height: 334px;
+  min-height: 146px;
   left: 584px;
   top: 104px;
   background: #ffffff;
@@ -23,4 +23,8 @@ export const EditContainer = styled.div`
     font-size: 22px;
     line-height: 26px;
   }
+`;
+
+export const ButtonDiv = styled.div`
+  text-align: end;
 `;

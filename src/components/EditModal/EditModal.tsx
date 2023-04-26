@@ -1,4 +1,5 @@
 import { ButtonS, InputS } from "..";
+import { ButtonDiv } from "../DeleteModal/DeleteModal.styles";
 import { EditContainer } from "./EditModal.styles";
 
 export const EditModal = () => {
@@ -21,7 +22,7 @@ export const EditModal = () => {
         pHolder={"Content Here"}
         text={"Content"}
       />
-      <div>
+      <ButtonDiv>
         <ButtonS
           border
           text="Cancel"
@@ -30,7 +31,7 @@ export const EditModal = () => {
           textColor="#000"
         />
         <ButtonS text="Save" onClick={(e) => console.log("edit")} />
-      </div>
+      </ButtonDiv>
     </EditContainer>
   );
 };

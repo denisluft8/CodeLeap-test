@@ -1,4 +1,10 @@
-import { ButtonS, EditModal, InputS, Posts } from "../../components";
+import {
+  ButtonS,
+  DeleteModal,
+  EditModal,
+  InputS,
+  Posts,
+} from "../../components";
 import { useState, useEffect } from "react";
 import api from "../../services/api";
 import { FormContainer, HomePage, PostsContainer } from "./Home.styles";
@@ -57,18 +63,21 @@ export const Home = () => {
         <ButtonS text="Create" onClick={(e: any) => sendInformation(e)} />
       </FormContainer>
 
-      <EditModal />
 
       <PostsContainer>
         {userData &&
           userData.map((data: any) => (
-            <Posts
-              title={data.title}
-              user={data.username}
-              time={data.created_datetime}
-              content={data.content}
-              key={data.id}
-            />
+            <>
+              <Posts
+                title={data.title}
+                user={data.username}
+                time={data.created_datetime}
+                content={data.content}
+                key={data.id}
+              />
+              <EditModal />
+              <DeleteModal />
+            </>
           ))}
       </PostsContainer>
     </HomePage>

@@ -18,6 +18,7 @@ export const ButtonStyled = styled.button<ButtonStyleProps>`
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
+  margin-left: 12px;
   cursor: pointer;
 
   &:hover {
