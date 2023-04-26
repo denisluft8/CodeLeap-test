@@ -7,6 +7,7 @@ export const PostContainer = styled.div`
   border-radius: 16px;
   border-top: none;
   margin-bottom: 20px;
+  width: 100%;
 
   #timeAgo {
     height: 18px;
@@ -66,25 +67,26 @@ export const Content = styled.p`
   color: #000000;
 `;
 interface EditStyleProps {
-  isDisplayed: boolean;
+  isEditDisplayed: boolean;
 }
 
-export const EditContainer = styled.div<EditStyleProps>`
+export const EditContainer = styled.div`
   border: 1px solid #999999;
-  display: ${(props) => (props.isDisplayed ? "flex" : "none")};
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 12px;
   margin: 20px;
   padding: 20px;
   box-sizing: border-box;
-  width: 80%;
+  max-width: 80%;
   min-height: 334px;
-  left: 584px;
-  top: 104px;
   background: #ffffff;
   border: 1px solid #999999;
   border-radius: 16px;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
 
   & > h2 {
     font-style: normal;
@@ -93,6 +95,10 @@ export const EditContainer = styled.div<EditStyleProps>`
     line-height: 26px;
   }
 `;
+
+interface DeleteStyleProps {
+  isDeleteDisplayed: boolean;
+}
 export const DeleteContainer = styled.div`
   border: 1px solid #999999;
   display: flex;
@@ -102,13 +108,13 @@ export const DeleteContainer = styled.div`
   margin: 20px;
   padding: 20px;
   box-sizing: border-box;
-  width: 80%;
-  min-height: 146px;
-  left: 584px;
-  top: 104px;
+  width: 70%;
+  max-height: 146px;
   background: #ffffff;
   border: 1px solid #999999;
   border-radius: 16px;
+  position: fixed;
+  z-index: 999;
 
   & > h2 {
     font-style: normal;
@@ -120,4 +126,28 @@ export const DeleteContainer = styled.div`
 
 export const ButtonDiv = styled.div`
   text-align: end;
+`;
+
+export const FullScreenDelete = styled.div<DeleteStyleProps>`
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  background: #8b8b8bd9;
+  display: ${(props) => (props.isDeleteDisplayed ? "flex" : "none")};
+  justify-content: center;
+  align-items: center;
+`;
+export const FullScreenEdit = styled.div<EditStyleProps>`
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #8b8b8bd9;
+  display: ${(props) => (props.isEditDisplayed ? "flex" : "none")};
+  justify-content: center;
+  align-items: center;
 `;

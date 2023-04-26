@@ -39,4 +39,7 @@ export const FormContainer = styled.form`
 
 export const PostsContainer = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
