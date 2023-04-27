@@ -35,7 +35,6 @@ export const Home = () => {
   };
 
   const sendInformation = (e: React.FormEvent<HTMLFormElement>) => {
-    const isEmpty = Object.values(form).some((value) => value === "");
     e.preventDefault();
     api
       .post("careers/", form)
