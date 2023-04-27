@@ -21,6 +21,10 @@ export const ButtonStyled = styled.button<ButtonStyleProps>`
   margin-left: 12px;
   cursor: pointer;
 
+  &:disabled {
+    filter: grayscale(100%);
+  }
+
   &:hover {
     filter: opacity(80%);
   }

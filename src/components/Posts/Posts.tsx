@@ -16,16 +16,24 @@ import {
 } from "./Posts.styles";
 import TimeAgo from "react-timeago";
 import api from "../../services/api";
+import { useSelector } from "react-redux/es/exports";
+import { IState } from "../../redux/reducers";
 
 interface PostsProps {
   title: string;
-  user: string;
+  userName: string;
   time: string;
   content: string;
   postId: string;
 }
 
-export const Posts = ({ title, user, time, content, postId }: PostsProps) => {
+export const Posts = ({
+  title,
+  userName,
+  time,
+  content,
+  postId,
+}: PostsProps) => {
   const [isEditShown, setIsEditShown] = useState(false);
   const [isDeleteShown, setIsDeleteShown] = useState(false);
   const [editForm, setEditForm] = useState<{
@@ -35,6 +43,8 @@ export const Posts = ({ title, user, time, content, postId }: PostsProps) => {
     title: "",
     content: "",
   });
+
+  const user = useSelector((state: IState) => state.user);
 
   const openEditModal = () => {
     isEditShown ? setIsEditShown(false) : setIsEditShown(true);
@@ -64,13 +74,17 @@ export const Posts = ({ title, user, time, content, postId }: PostsProps) => {
       <PostContainer>
         <HeaderContainer>
           <Title>{title}</Title>
-          <SvgContainer>
-            <img src={deleteSvg} onClick={() => openDeleteModal()} />
-            <img src={editSvg} onClick={() => openEditModal()} />
-          </SvgContainer>
+          {user === userName ? (
+            <SvgContainer>
+              <img src={deleteSvg} onClick={() => openDeleteModal()} />
+              <img src={editSvg} onClick={() => openEditModal()} />
+            </SvgContainer>
+          ) : (
+            <></>
+          )}
         </HeaderContainer>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <User>{user}</User>
+          <User>{userName}</User>
           <TimeAgo id="timeAgo" date={time} />
         </div>
         <Content>{content}</Content>

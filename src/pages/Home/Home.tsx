@@ -35,6 +35,7 @@ export const Home = () => {
   };
 
   const sendInformation = (e: React.FormEvent<HTMLFormElement>) => {
+    const isEmpty = Object.values(form).some((value) => value === "");
     e.preventDefault();
     api
       .post("careers/", form)
@@ -62,7 +63,10 @@ export const Home = () => {
           onChange={(val: string) => setForm({ ...form, content: val })}
         />
         <ButtonDiv>
-          <ButtonS text="Create" />
+          <ButtonS
+            text="Create"
+            disabled={Object.values(form).some((value) => value === "")}
+          />
         </ButtonDiv>
       </FormContainer>
 
@@ -71,7 +75,7 @@ export const Home = () => {
           userData.map((data: any) => (
             <Posts
               title={data.title}
-              user={data.username}
+              userName={data.username}
               time={data.created_datetime}
               content={data.content}
               key={data.id}

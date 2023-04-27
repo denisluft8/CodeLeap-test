@@ -1,8 +1,10 @@
 import { saveUser } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { LoginPage } from "./Login.styles";
+import { useNavigate } from "react-router-dom";
+import { FormLoginContainer, LoginPage } from "./Login.styles";
+import { ButtonS, InputS } from "../../components";
+import { ButtonDiv } from "../../components/Posts/Posts.styles";
 
 export const Login = () => {
   const [user, setUser] = useState("");
@@ -19,10 +21,18 @@ export const Login = () => {
 
   return (
     <LoginPage>
-      <form action="submit" onSubmit={handleSubmit}>
-        <input onChange={(e) => setUser(e.target.value)}></input>
-        <button type="submit">send</button>
-      </form>
+      <FormLoginContainer onSubmit={handleSubmit}>
+        <h2>Welcome to CodeLeap network!</h2>
+        <InputS
+          inputId={"login"}
+          onChange={(e) => setUser(e)}
+          pHolder={"John doe"}
+          text={"Please enter your username"}
+        />
+        <ButtonDiv>
+          <ButtonS text={"ENTER"} disabled={user === "" ? true : false} />
+        </ButtonDiv>
+      </FormLoginContainer>
     </LoginPage>
   );
 };

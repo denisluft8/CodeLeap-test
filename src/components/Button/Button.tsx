@@ -6,11 +6,13 @@ interface ButtonProps {
   text: string;
   textColor?: string;
   border?: boolean;
+  disabled?: boolean;
 }
 
 export const ButtonS = ({
   bgColor = "#7695ec",
   border,
+  disabled,
   onClick,
   text,
   textColor = "#fff",
@@ -23,6 +25,7 @@ export const ButtonS = ({
         bgColor={bgColor}
         onClick={onClick}
         textColor={textColor}
+        disabled={disabled}
       >
         {text}
       </ButtonStyled>
