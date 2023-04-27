@@ -3,23 +3,30 @@ import { useState, useEffect } from "react";
 import api from "../../services/api";
 import { FormContainer, HomePage, PostsContainer } from "./Home.styles";
 import { ButtonDiv } from "../../components/Posts/Posts.styles";
+import { useSelector } from "react-redux/es/exports";
+import { IState } from "../../redux/reducers";
 
 export const Home = () => {
   const [userData, setUserData] = useState([]);
-  const [userName, setUserName] = useState("denis");
+  const user = useSelector((state: IState) => state.user);
   const [form, setForm] = useState<{
     username: string;
     title: string;
     content: string;
   }>({
-    username: userName,
+    username: "",
     title: "",
     content: "",
   });
 
   useEffect(() => {
+    setForm({ ...form, username: user });
     loadInformation();
   }, [userData]);
+
+  useEffect(() => {
+    loadInformation();
+  }, [form]);
 
   const loadInformation = () => {
     api.get("careers/?format=json").then(({ data }) => {
@@ -27,7 +34,8 @@ export const Home = () => {
     });
   };
 
-  const sendInformation = () => {
+  const sendInformation = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     api
       .post("careers/", form)
       .then(({ data }) => {
@@ -38,7 +46,7 @@ export const Home = () => {
 
   return (
     <HomePage>
-      <FormContainer action="submit">
+      <FormContainer action="submit" onSubmit={(e) => sendInformation(e)}>
         <h2>What's on your mind?</h2>
         <InputS
           inputId={"title"}
@@ -54,7 +62,7 @@ export const Home = () => {
           onChange={(val: string) => setForm({ ...form, content: val })}
         />
         <ButtonDiv>
-          <ButtonS text="Create" onClick={sendInformation} />
+          <ButtonS text="Create" />
         </ButtonDiv>
       </FormContainer>
 

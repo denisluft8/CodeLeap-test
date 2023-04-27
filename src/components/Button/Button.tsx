@@ -2,7 +2,7 @@ import { ButtonStyled } from "./Button.styles";
 
 interface ButtonProps {
   bgColor?: string;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   text: string;
   textColor?: string;
   border?: boolean;
